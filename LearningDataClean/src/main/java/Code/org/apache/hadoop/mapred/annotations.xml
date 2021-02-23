@@ -1,0 +1,5 @@
+<root>
+    <item name='org.apache.hadoop.mapred.TextOutputFormat'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

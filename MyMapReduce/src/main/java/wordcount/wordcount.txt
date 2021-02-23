@@ -1,0 +1,6 @@
+hello world hadoop
+hive sqoop flume hello
+kitty kitty kitty kitty
+tom tom tom jerry world
+jerry hadoop
+hadoop

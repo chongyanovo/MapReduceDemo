@@ -1,0 +1,13 @@
+POST	html/notes/1.html		1
+POST	/service/1.htm		1
+POST	/html/notes/1.html		1
+POST	/ service/3.htm		1
+POST	/ service/2.htm		1
+POST	/ service/12.htm		1
+GET	service/2.htm		1
+GET	service/1.htm		1
+GET	html/notes/2.html		2
+GET	/html/notes/1.html		1
+GET	/ service/2.htm		1
+GET	/ service/1.htm		1
+GET	/		3

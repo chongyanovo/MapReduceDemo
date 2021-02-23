@@ -1,0 +1,5 @@
+<root>
+    <item name='org.apache.hadoop.mapreduce.lib.output.TextOutputFormat'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
