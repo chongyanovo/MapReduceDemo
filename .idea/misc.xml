@@ -12,6 +12,10 @@
         <option value="$PROJECT_DIR$/MapReduce/pom.xml" />
         <option value="$PROJECT_DIR$/Test/pom.xml" />
         <option value="$PROJECT_DIR$/../UDF/pom.xml" />
+        <option value="$PROJECT_DIR$/Hive/pom.xml" />
+        <option value="$PROJECT_DIR$/UDF/pom.xml" />
+        <option value="$PROJECT_DIR$/综合练习/pom.xml" />
+        <option value="$PROJECT_DIR$/Demo/pom.xml" />
       </list>
     </option>
   </component>

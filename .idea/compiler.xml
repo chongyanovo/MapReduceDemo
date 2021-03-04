@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JDBC" />
+        <module name="Hive" />
+        <module name="Demo" />
         <module name="DataClean" />
         <module name="Test" />
         <module name="Scala" />
@@ -16,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="IDEAProjects" target="8" />
+      <module name="JDBC" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
