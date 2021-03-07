@@ -48,7 +48,7 @@ public class question2 {
 class mapper2 extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String[] lines = value.toString().trim().split("\t");
+        String[] lines = value.toString().trim().split(",");
         String month = lines[1];
         context.write(new Text(month), new IntWritable(1));
     }

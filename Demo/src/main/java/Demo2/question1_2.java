@@ -44,8 +44,10 @@ class mapper1_2 extends Mapper<LongWritable, Text, Text, NullWritable> {
         String[] lines = value.toString().trim().split(",");
         String str = "";
         for (int i = 0; i < lines.length - 1; i++) {
-            str = str + "\t" + lines[0];
+            str = str + "," + lines[i];
         }
+
+        str = str.substring(1);
         context.write(new Text(str), NullWritable.get());
     }
 

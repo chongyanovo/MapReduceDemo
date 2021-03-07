@@ -48,7 +48,7 @@ public class question3 {
 class mapper3 extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String[] lines = value.toString().trim().split("\t");
+        String[] lines = value.toString().trim().split(",");
         String sex = lines[38];
         context.write(new Text(sex), new IntWritable(1));
     }

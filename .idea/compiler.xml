@@ -17,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="IDEAProjects" target="8" />
+      <module name="JavaHadoop" target="8" />
       <module name="JDBC" target="1.8" />
     </bytecodeTargetLevel>
   </component>

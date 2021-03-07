@@ -1,9 +1,10 @@
-package Demo1;
+package Demo2;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -14,26 +15,29 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.TreeMap;
 
-public class question1 {
-    private static Path INPATH = new Path("hdfs://localhost:9000/demo1/in");
-    private static Path OUTPATH = new Path("hdfs://localhost:9000/demo1/out1");
+public class question4 {
+    private static Path INPATH = new Path("hdfs://localhost:9000/demo2/out1_2");
+    private static Path OUTPATH = new Path("hdfs://localhost:9000/demo2/out4");
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
-        job.setJarByClass(question1.class);
+        job.setJarByClass(question4.class);
 
         job.setInputFormatClass(TextInputFormat.class);
         FileInputFormat.setInputPaths(job, INPATH);
 
-        job.setMapperClass(mapper1.class);
+        job.setMapperClass(mapper4.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
 
-        job.setReducerClass(reducer1.class);
+        job.setReducerClass(reducer4.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(NullWritable.class);
 
         job.setOutputFormatClass(TextOutputFormat.class);
         FileOutputFormat.setOutputPath(job, OUTPATH);
@@ -42,23 +46,45 @@ public class question1 {
     }
 }
 
-//1、统计车辆不同用途的数量分布
-class mapper1 extends Mapper<LongWritable, Text, Text, IntWritable> {
+//4、找出南京市2月份销售量最高的是哪个地区
+class mapper4 extends Mapper<LongWritable, Text, Text, IntWritable> {
+
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] lines = value.toString().trim().split(",");
-        String nature = lines[1];
-        context.write(new Text(nature), new IntWritable(1));
+        String area = lines[0];
+        int sales = Integer.parseInt(lines[5]);
+        context.write(new Text(area), new IntWritable(sales));
     }
 }
 
-class reducer1 extends Reducer<Text, IntWritable, Text, IntWritable> {
+class reducer4 extends Reducer<Text, IntWritable, Text, NullWritable> {
+    int K;
+    TreeMap<Integer, String> map = new TreeMap<>();
+    ArrayList<String> list = new ArrayList<>();
+
+    @Override
+    protected void setup(Context context) throws IOException, InterruptedException {
+        K = 1;
+    }
+
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int count = 0;
+        int sum = 0;
         for (IntWritable i : values) {
-            count += i.get();
+            sum += i.get();
         }
-        context.write(key, new IntWritable(count));
+        map.put(sum, key.toString());
+    }
+
+    @Override
+    protected void cleanup(Context context) throws IOException, InterruptedException {
+        for (Integer i : map.keySet()) {
+            list.add(map.get(i));
+        }
+        Collections.reverse(list);
+        for (int i = 0; i < K; i++) {
+            context.write(new Text(list.get(i)), NullWritable.get());
+        }
     }
 }

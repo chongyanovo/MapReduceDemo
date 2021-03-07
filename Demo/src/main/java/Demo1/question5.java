@@ -43,7 +43,7 @@ class mapper5 extends Mapper<LongWritable, Text, Text, NullWritable> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Counter counter = context.getCounter("计数器", "燃料种类为空");
-        String[] lines = value.toString().trim().split("\t");
+        String[] lines = value.toString().trim().split(",");
         String fuel = lines[15];
         if (fuel.equals("") || fuel.equals(null) || fuel.equals("NULL") || fuel.equals("NAN")) {
             fuel = "汽油";

@@ -67,8 +67,9 @@ class mapper1_1 extends Mapper<LongWritable, Text, Text, NullWritable> {
         }
         String str = "";
         for (String k : lines) {
-            str = str + "\t" + k;
+            str = str + "," + k;
         }
+        str = str.substring(1);
         context.write(new Text(str), NullWritable.get());
     }
 }

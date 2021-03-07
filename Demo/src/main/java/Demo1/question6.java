@@ -50,7 +50,7 @@ class mapper6 extends Mapper<LongWritable, Text, Text, NullWritable> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String[] lines = value.toString().trim().split("\t");
+        String[] lines = value.toString().trim().split(",");
         String city = lines[2];
         mos.write(value, NullWritable.get(), city + "/");
     }
