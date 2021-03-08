@@ -21,7 +21,7 @@ import java.util.TreeMap;
 
 public class question5 {
     private static Path INPATH = new Path("hdfs://localhost:9000/demo2/out1_2");
-    private static Path OUTPATH = new Path("hdfs://localhost:9000/demo2/out4");
+    private static Path OUTPATH = new Path("hdfs://localhost:9000/demo2/out5");
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
